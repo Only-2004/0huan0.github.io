@@ -134,7 +134,7 @@
     .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
     /* === Survey Embedded Styles === */
-    .survey-overview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .survey-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
     .ov-card {
       background: var(--card); border: 1px solid var(--border); border-radius: 12px;
       padding: 1.2rem; text-align: center;
@@ -219,7 +219,7 @@
     @media (max-width: 700px) {
       .stats { gap: 1.2rem; }
       .stat .num { font-size: 1.5rem; }
-      .survey-overview { grid-template-columns: repeat(2, 1fr); }
+      .survey-overview { grid-template-columns: repeat(3, 1fr); }
       .grid2 { grid-template-columns: 1fr; }
       .donut-row { flex-direction: column; }
       nav .links a.nl { display: none; }
@@ -313,12 +313,11 @@
 <section id="survey" class="fade-up">
   <span class="stag">04 / 调研数据</span>
   <h2>587份问卷数据可视化</h2>
-  <p class="desc">覆盖用户画像、消费偏好、价格敏感度、产品偏好与渠道选择等核心维度的完整调研数据。</p>
+  <p class="desc">核心维度数据：用户分群、品类偏好与价格接受度。</p>
 
   <!-- Overview numbers -->
   <div class="survey-overview">
     <div class="ov-card"><div class="ov-num" data-target="587">0</div><div class="ov-label">有效问卷</div></div>
-    <div class="ov-card"><div class="ov-num" data-target="42">0</div><div class="ov-label">调研题目</div></div>
     <div class="ov-card"><div class="ov-num" data-target="93">0</div><div class="ov-label">有效率(%)</div></div>
     <div class="ov-card"><div class="ov-num" data-target="14">0</div><div class="ov-label">调研天数</div></div>
   </div>
@@ -350,30 +349,6 @@
     </div>
   </div>
 
-  <!-- Age + Gender -->
-  <div class="grid2">
-    <div class="survey-block">
-      <h3>年龄分布</h3>
-      <p class="sub">受访者年龄集中在18-25岁</p>
-      <div class="hbar"><div class="hbar-label"><span>18岁以下</span><span>8.2%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:8.2%; background:var(--c4)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>18-22岁</span><span>41.6%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:41.6%; background:var(--c1)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>23-25岁</span><span>28.3%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:28.3%; background:var(--c2)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>26-30岁</span><span>14.7%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:14.7%; background:var(--c3)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>30岁以上</span><span>7.2%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:7.2%; background:var(--c5)"></div></div></div>
-    </div>
-    <div class="survey-block">
-      <h3>性别分布</h3>
-      <p class="sub">女性用户占主导地位</p>
-      <div class="hbar"><div class="hbar-label"><span>女性</span><span>67.5%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:67.5%; background:var(--accent2)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>男性</span><span>28.8%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:28.8%; background:var(--accent3)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>不愿透露</span><span>3.7%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:3.7%; background:var(--text2)"></div></div></div>
-      <div class="insight">
-        <div class="ins-title">洞察</div>
-        <p>18-25岁女性占比超70%，是核心决策人群。IP形象设计偏萌系、暖色调，包装注重"开箱仪式感"。</p>
-      </div>
-    </div>
-  </div>
-
   <!-- Product preference -->
   <div class="survey-block">
     <h3>产品品类偏好</h3>
@@ -381,11 +356,8 @@
     <div class="hbar"><div class="hbar-label"><span>毛绒抱枕</span><span>73.2%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:73.2%; background:var(--c1)"></div></div></div>
     <div class="hbar"><div class="hbar-label"><span>钥匙扣/挂件</span><span>68.9%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:68.9%; background:var(--c2)"></div></div></div>
     <div class="hbar"><div class="hbar-label"><span>贴纸套装</span><span>61.4%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:61.4%; background:var(--c3)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>明信片</span><span>45.7%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:45.7%; background:var(--c4)"></div></div></div>
     <div class="hbar"><div class="hbar-label"><span>帆布袋</span><span>38.1%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:38.1%; background:var(--c5)"></div></div></div>
     <div class="hbar"><div class="hbar-label"><span>手机壳</span><span>32.6%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:32.6%; background:var(--c6)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>盲盒</span><span>29.3%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:29.3%; background:var(--accent3)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>徽章</span><span>24.8%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:24.8%; background:var(--accent2)"></div></div></div>
     <div class="insight">
       <div class="ins-title">选品策略</div>
       <p>抱枕、钥匙扣、贴纸为TOP3品类，综合偏好度与成本结构，最终筛选出8款高潜爆品组合。</p>
@@ -407,45 +379,6 @@
     </div>
   </div>
 
-  <!-- Channels -->
-  <div class="grid2">
-    <div class="survey-block">
-      <h3>购买渠道偏好</h3>
-      <p class="sub">Q: "您更倾向通过什么渠道购买？"</p>
-      <div class="hbar"><div class="hbar-label"><span>QQ群/私域</span><span>42.3%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:42.3%; background:var(--c1)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>淘宝/闲鱼</span><span>27.8%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:27.8%; background:var(--c2)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>微信小程序</span><span>16.4%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:16.4%; background:var(--c3)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>线下活动</span><span>13.5%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:13.5%; background:var(--c5)"></div></div></div>
-    </div>
-    <div class="survey-block">
-      <h3>购买决策影响因素</h3>
-      <p class="sub">Q: "影响您购买的最主要因素是？"（限选3项）</p>
-      <div class="hbar"><div class="hbar-label"><span>IP形象打动我</span><span>78.4%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:78.4%; background:var(--c1)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>收益用于公益</span><span>65.1%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:65.1%; background:var(--c2)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>产品实用性</span><span>52.3%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:52.3%; background:var(--c3)"></div></div></div>
-      <div class="hbar"><div class="hbar-label"><span>价格合理</span><span>47.8%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:47.8%; background:var(--c4)"></div></div></div>
-    </div>
-  </div>
-
-  <!-- Cross analysis table -->
-  <div class="survey-block">
-    <h3>领养意愿与复购意向（交叉分析）</h3>
-    <p class="sub">不同用户群体的行为意向对比</p>
-    <table class="dtable">
-      <thead><tr><th>指标</th><th>整体</th><th>情感陪伴型</th><th>公益认同型</th></tr></thead>
-      <tbody>
-        <tr><td>愿意了解流浪动物故事</td><td class="hl-cell">82.6%</td><td>91.3%</td><td>88.7%</td></tr>
-        <tr><td>购买后愿意分享给朋友</td><td class="hl-cell">74.1%</td><td>83.5%</td><td>71.2%</td></tr>
-        <tr><td>有复购意向</td><td class="hl-cell">68.9%</td><td>79.2%</td><td>64.5%</td></tr>
-        <tr><td>愿意参与线下领养活动</td><td class="hl-cell">56.3%</td><td>62.8%</td><td>71.4%</td></tr>
-        <tr><td>愿意月度定额捐助</td><td class="hl-cell">23.7%</td><td>18.4%</td><td>52.1%</td></tr>
-      </tbody>
-    </table>
-    <div class="insight">
-      <div class="ins-title">运营启示</div>
-      <p>情感陪伴型用户的分享意愿(83.5%)和复购意愿(79.2%)显著高于均值，是裂变增长的核心种子用户。公益认同型更愿意持续捐助，适合长期会员运营。</p>
-    </div>
-  </div>
 </section>
 
 <!-- 5. Offline -->
