@@ -138,6 +138,18 @@
     .step h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
     .step p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
 
+    /* Gallery */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); background: var(--card);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+    .gallery-item img { width: 100%; height: auto; display: block; }
+
     /* Survey — 图表区块 */
     .survey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
     .survey-card {
@@ -229,6 +241,7 @@
       .stats-bar .s-num { font-size: 1.8rem; }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .survey-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
       .donut-area { flex-direction: column; }
       .nav-links a { display: none; }
     }
@@ -243,6 +256,7 @@
       <a href="#about">关于我们</a>
       <a href="#research">调研</a>
       <a href="#product">产品</a>
+      <a href="#gallery">商品</a>
       <a href="#data">数据</a>
       <a href="#result">成果</a>
     </div>
@@ -338,6 +352,26 @@
       <h3>薄利多销</h3>
       <p>针对学生群体消费力，优化供应链渠道降低18%采购成本，以亲民价格让更多人参与公益。</p>
       <span class="card-tag">采购成本 -18%</span>
+    </div>
+  </div>
+</div>
+
+<!-- Product Gallery -->
+<div class="container sec fade-up" id="gallery">
+  <div class="sec-head">
+    <div class="sec-tag">Gallery</div>
+    <h2>商品一览</h2>
+    <p>每一件商品都承载着对小生命的爱，购买即公益。</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="product1.jpg" alt="身份证套 / 手机气囊支架 / 扑克牌 / 行李箱挂牌 / 洗碗布" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="product2.jpg" alt="毛绒吧唧 / 亚克力钥匙串 / 亚克力御守 / 可补光扇子 / 流沙冰箱贴" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="product3.jpg" alt="邮票贴纸 / 水晶贴纸 / 透卡 / 明信片 / PP夹" loading="lazy">
     </div>
   </div>
 </div>
