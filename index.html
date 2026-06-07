@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人主页</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --card: #1e293b;
+      --border: #334155;
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg2: #ffffff;
+      --text: #1e293b;
+      --text2: #64748b;
+      --accent: #0284c7;
+      --accent2: #6366f1;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      z-index: 100; backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+    }
+    nav .inner {
+      max-width: 800px; margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    nav .links { display: flex; gap: 1.5rem; align-items: center; }
+    nav a { color: var(--text2); font-size: 0.9rem; transition: color 0.2s; }
+    nav a:hover { color: var(--accent); text-decoration: none; }
+    #theme-toggle {
+      background: none; border: 1px solid var(--border);
+      color: var(--text2); cursor: pointer; border-radius: 6px;
+      padding: 0.3rem 0.6rem; font-size: 1rem;
+    }
+
+    /* Sections */
+    section { max-width: 800px; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
+    h2 {
+      font-size: 1.1rem; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--accent);
+      margin-bottom: 1.5rem; font-weight: 600;
+    }
+
+    /* Hero */
+    #hero {
+      padding-top: 8rem; text-align: center;
+    }
+    #hero h1 {
+      font-size: 2.8rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    #hero .subtitle { color: var(--text2); font-size: 1.15rem; margin-top: 0.5rem; }
+    #hero .tagline { color: var(--text2); margin-top: 1.2rem; max-width: 500px; margin-inline: auto; }
+    .social-links { margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; }
+    .social-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border); color: var(--text2);
+      transition: all 0.2s; font-size: 1.2rem;
+    }
+    .social-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* About */
+    .about-text { color: var(--text2); font-size: 1.05rem; }
+
+    /* Skills */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem 1.4rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .skill-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .skill-card h3 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .skill-card p { font-size: 0.85rem; color: var(--text2); }
+    .skill-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 0.6rem; }
+    .skill-bar div { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+    /* Projects */
+    .project-list { display: flex; flex-direction: column; gap: 1rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.3rem 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .project-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .project-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .project-card p { font-size: 0.9rem; color: var(--text2); }
+    .project-card .tags { margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .project-card .tag {
+      font-size: 0.75rem; padding: 0.15rem 0.6rem;
+      border-radius: 999px; border: 1px solid var(--border);
+      color: var(--text2);
+    }
+
+    /* Contact */
+    .contact-methods {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      color: var(--text2); font-size: 0.95rem;
+    }
+    .contact-item span.icon { font-size: 1.2rem; width: 2rem; text-align: center; }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 2rem 1.5rem;
+      color: var(--text2); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      max-width: 800px; margin: 2rem auto 0;
+    }
+
+    /* Animate on scroll */
+    .fade-up {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      #hero h1 { font-size: 2rem; }
+      nav .links { gap: 0.8rem; }
+      nav .links a:not(#theme-toggle) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#hero" style="font-weight:600; color:var(--text);">HOME</a>
+    <div class="links">
+      <a href="#about">关于</a>
+      <a href="#skills">技能</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+      <button id="theme-toggle" title="切换主题">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <h1>你的名字</h1>
+  <p class="subtitle">全栈开发者 / AI 爱好者</p>
+  <p class="tagline">热爱技术，专注于构建智能化应用。目前在探索大模型与 Agent 技术的落地实践。</p>
+  <div class="social-links">
+    <a href="#" title="GitHub">GH</a>
+    <a href="#" title="邮箱">@</a>
+    <a href="#" title="博客">B</a>
+  </div>
+</section>
+
+<section id="about" class="fade-up">
+  <h2>关于我</h2>
+  <p class="about-text">
+    我是一名对 AI 和全栈开发充满热情的开发者。日常使用 Python、JavaScript 构建 Web 应用，
+    近期专注于大语言模型（LLM）应用开发，包括 Agent 架构设计、Function Calling、RAG 等方向。
+    喜欢用技术解决实际问题，让复杂的事情变得简单。
+  </p>
+</section>
+
+<section id="skills" class="fade-up">
+  <h2>技能</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>Python</h3>
+      <p>FastAPI / Flask / 数据处理</p>
+      <div class="skill-bar"><div style="width:90%"></div></div>
+    </div>
+    <div class="skill-card">
+      <h3>JavaScript / TS</h3>
+      <p>React / Vue / Node.js</p>
+      <div class="skill-bar"><div style="width:80%"></div></div>
+    </div>
+    <div class="skill-card">
+      <h3>AI / LLM</h3>
+      <p>Agent / Function Calling / RAG</p>
+      <div class="skill-bar"><div style="width:85%"></div></div>
+    </div>
+    <div class="skill-card">
+      <h3>DevOps</h3>
+      <p>Linux / Nginx / Docker / CI/CD</p>
+      <div class="skill-bar"><div style="width:70%"></div></div>
+    </div>
+    <div class="skill-card">
+      <h3>数据库</h3>
+      <p>SQLite / MySQL / Redis</p>
+      <div class="skill-bar"><div style="width:75%"></div></div>
+    </div>
+    <div class="skill-card">
+      <h3>其他</h3>
+      <p>Git / REST API / 微服务</p>
+      <div class="skill-bar"><div style="width:70%"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="fade-up">
+  <h2>项目</h2>
+  <div class="project-list">
+    <div class="project-card">
+      <h3>QQ Agent — 校园 AI 助手</h3>
+      <p>基于通义千问大模型的智能助手，支持自然语言交互、工具调用、定时提醒、需求匹配等功能。</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">LLM Agent</span>
+        <span class="tag">SQLite</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <h3>个人主页</h3>
+      <p>纯静态单页面个人简历网站，支持深色/浅色主题切换，响应式设计。</p>
+      <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="fade-up">
+  <h2>联系我</h2>
+  <div class="contact-methods">
+    <div class="contact-item"><span class="icon">@</span> your-email@example.com</div>
+    <div class="contact-item"><span class="icon">GH</span> <a href="#">github.com/yourname</a></div>
+    <div class="contact-item"><span class="icon">B</span> <a href="#">你的博客地址</a></div>
+  </div>
+</section>
+
+<footer>&copy; 2026 你的名字. All rights reserved.</footer>
+
+<script>
+  // Theme toggle
+  const toggle = document.getElementById('theme-toggle');
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    document.documentElement.dataset.theme = saved;
+    toggle.textContent = saved === 'light' ? '☀️' : '🌙';
+  }
+  toggle.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    toggle.textContent = next === 'light' ? '☀️' : '🌙';
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
