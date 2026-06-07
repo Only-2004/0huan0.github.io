@@ -3,492 +3,566 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>流浪动物IP公益项目 — 项目展示</title>
+  <title>守护每一个小生命 — 流浪动物IP公益项目</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <style>
     :root {
-      --bg: #0a1a12; --bg2: #111f17; --text: #e4f0e8; --text2: #7fa68e;
-      --accent: #4ade80; --accent2: #2dd4bf; --accent3: #a3e635;
-      --card: #132219; --border: #1e3a2a; --glow: rgba(74, 222, 128, 0.08);
-      --c1: #4ade80; --c2: #2dd4bf; --c3: #a3e635; --c4: #6ee7b7; --c5: #86efac; --c6: #34d399;
-    }
-    [data-theme="light"] {
-      --bg: #f0faf4; --bg2: #fff; --text: #14291c; --text2: #5a7d66;
-      --accent: #16a34a; --accent2: #0d9488; --accent3: #65a30d;
-      --card: #fff; --border: #d1e7d8; --glow: rgba(22, 163, 74, 0.06);
+      --green: #3a7d5c;
+      --green-light: #eef6f1;
+      --green-dark: #2c5e46;
+      --warm: #d4a053;
+      --warm-light: #fdf6ec;
+      --text: #2d3436;
+      --text2: #636e72;
+      --bg: #fefdfb;
+      --card: #ffffff;
+      --border: #e8e8e8;
+      --radius: 12px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.75;
-      transition: background 0.3s, color 0.3s;
+      font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, 'Helvetica Neue', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent); text-decoration: none; }
+    a { color: var(--green); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
 
     /* Nav */
-    nav {
+    .nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      backdrop-filter: blur(16px);
-      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      background: rgba(254, 253, 251, 0.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    nav .inner {
-      max-width: 920px; margin: 0 auto; padding: 0.7rem 1.5rem;
+    .nav .container {
       display: flex; justify-content: space-between; align-items: center;
+      height: 56px;
     }
-    nav .logo { font-weight: 700; font-size: 0.95rem; color: var(--text); }
-    nav .links { display: flex; gap: 1rem; align-items: center; }
-    nav a.nl { color: var(--text2); font-size: 0.82rem; transition: color 0.2s; }
-    nav a.nl:hover { color: var(--accent); }
-    #theme-toggle {
-      background: none; border: 1px solid var(--border);
-      color: var(--text2); cursor: pointer; border-radius: 6px;
-      padding: 0.25rem 0.55rem; font-size: 0.95rem;
-    }
+    .nav-logo { font-size: 1rem; font-weight: 700; color: var(--green); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--text2); font-size: 0.88rem; }
+    .nav-links a:hover { color: var(--green); }
 
-    /* Hero */
+    /* Hero — 大留白、情感叙事 */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 6rem 1.5rem 3rem; position: relative; overflow: hidden;
+      padding: 140px 0 80px; text-align: center;
     }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 40%, var(--glow), transparent);
-      pointer-events: none;
+    .hero-badge {
+      display: inline-block; font-size: 0.75rem; font-weight: 600;
+      color: var(--green); background: var(--green-light);
+      padding: 0.3rem 1rem; border-radius: 999px; margin-bottom: 1.5rem;
+      letter-spacing: 0.08em;
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.25; margin-bottom: 0.6rem;
+      font-size: clamp(2rem, 5.5vw, 3.6rem); font-weight: 800;
+      line-height: 1.3; color: var(--text); margin-bottom: 1rem;
+      max-width: 700px; margin-inline: auto;
     }
-    .hero h1 .hl {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    .hero h1 em {
+      font-style: normal; color: var(--green);
+      position: relative;
     }
-    .hero .lead { font-size: 1.08rem; color: var(--text2); max-width: 560px; margin: 0 auto 2rem; }
-    .stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .stat { text-align: center; }
-    .stat .num {
-      font-size: 2rem; font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    .hero h1 em::after {
+      content: ''; position: absolute; left: 0; bottom: 0.08em;
+      width: 100%; height: 0.12em; background: var(--warm); opacity: 0.4;
+      border-radius: 2px;
     }
-    .stat .sl { font-size: 0.8rem; color: var(--text2); margin-top: 0.15rem; }
+    .hero p {
+      font-size: 1.1rem; color: var(--text2); max-width: 520px;
+      margin: 0 auto 2.5rem; line-height: 1.9;
+    }
 
-    /* Section */
-    section { max-width: 920px; margin: 0 auto; padding: 4rem 1.5rem; }
-    .stag {
-      display: inline-block; font-size: 0.72rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.15em;
-      color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent);
-      padding: 0.25rem 0.8rem; border-radius: 999px; margin-bottom: 0.8rem;
+    /* Stats — 简洁、信任感 */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 2.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
     }
-    section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; }
-    section .desc { color: var(--text2); font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 700px; }
+    .stats-bar .s-item { text-align: center; }
+    .stats-bar .s-num {
+      font-size: 2.4rem; font-weight: 800; color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+    .stats-bar .s-label { font-size: 0.82rem; color: var(--text2); margin-top: 0.1rem; }
 
-    /* Cards */
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    /* Section headers — 左对齐、大标题 */
+    .sec { padding: 4rem 0; }
+    .sec-head { margin-bottom: 2rem; }
+    .sec-head .sec-tag {
+      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--warm); margin-bottom: 0.5rem;
+    }
+    .sec-head h2 {
+      font-size: 1.8rem; font-weight: 800; color: var(--text);
+      line-height: 1.35; margin-bottom: 0.5rem;
+    }
+    .sec-head p { font-size: 0.95rem; color: var(--text2); max-width: 560px; }
+
+    /* Cards — 干净、留白充足 */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
     .card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.4rem 1.5rem; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem;
+      transition: box-shadow 0.3s;
     }
-    .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
-    .card .icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
-    .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem; }
-    .card p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
-    .card .metric {
-      display: inline-block; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600;
-      color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent);
-      padding: 0.15rem 0.55rem; border-radius: 6px;
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .card .card-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--green-light); color: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1rem;
+    }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+    .card .card-tag {
+      display: inline-block; margin-top: 0.8rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--green);
+      background: var(--green-light); padding: 0.15rem 0.6rem; border-radius: 6px;
     }
 
-    /* Timeline */
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before { content: ''; position: absolute; left: 0.45rem; top: 0.5rem; bottom: 0.5rem; width: 2px; background: var(--border); }
-    .tl-item { position: relative; margin-bottom: 2rem; }
-    .tl-item::before {
-      content: ''; position: absolute; left: -1.65rem; top: 0.55rem;
-      width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg);
+    /* Process / timeline — 简洁步骤 */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
+    .step {
+      text-align: center; padding: 1.5rem 1rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius);
     }
-    .tl-item h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
-    .tl-item p { font-size: 0.88rem; color: var(--text2); }
+    .step .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--green); color: #fff; font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 0.8rem;
+    }
+    .step h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .step p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
 
-    /* Result banner */
-    .result-banner {
-      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--card)), var(--card));
-      border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem 2rem; text-align: center; margin: 2rem 0;
+    /* Survey — 图表区块 */
+    .survey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    .survey-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem;
     }
-    .result-banner .big-num {
-      font-size: 3rem; font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .result-banner p { color: var(--text2); margin-top: 0.3rem; font-size: 0.95rem; }
-    .result-tags { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.2rem; }
-    .result-tags span { font-size: 0.78rem; padding: 0.25rem 0.7rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text2); }
+    .survey-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .survey-card .sc-sub { font-size: 0.82rem; color: var(--text2); margin-bottom: 1.2rem; }
 
-    /* Skills */
-    .skill-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
-    .skill-tag {
-      font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 8px;
-      border: 1px solid var(--border); color: var(--text2); transition: border-color 0.2s, color 0.2s;
+    /* Bar chart */
+    .bar { margin-bottom: 0.6rem; }
+    .bar .bar-top { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.2rem; }
+    .bar .bar-top .bar-val { font-weight: 700; color: var(--green); }
+    .bar .bar-track {
+      height: 8px; background: var(--green-light); border-radius: 4px; overflow: hidden;
     }
-    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* === Survey Embedded Styles === */
-    .survey-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-    .ov-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.2rem; text-align: center;
-    }
-    .ov-card .ov-num {
-      font-size: 1.8rem; font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .ov-card .ov-label { font-size: 0.78rem; color: var(--text2); margin-top: 0.15rem; }
-
-    .survey-block {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-      padding: 2rem; margin-bottom: 1.5rem;
-    }
-    .survey-block h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .survey-block .sub { font-size: 0.85rem; color: var(--text2); margin-bottom: 1.2rem; }
-
-    /* Horizontal bar */
-    .hbar { margin-bottom: 0.65rem; }
-    .hbar .hbar-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.85rem; margin-bottom: 0.2rem; }
-    .hbar .hbar-label span:last-child { font-weight: 700; color: var(--accent); }
-    .hbar .hbar-track {
-      height: 10px; background: color-mix(in srgb, var(--text2) 10%, transparent);
-      border-radius: 5px; overflow: hidden;
-    }
-    .hbar .hbar-fill {
-      height: 100%; border-radius: 5px; width: 0;
-      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    .bar .bar-fill {
+      height: 100%; border-radius: 4px; background: var(--green); width: 0;
+      transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* Donut */
-    .donut-row { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
-    .donut-wrap { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
-    .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .donut-wrap circle { fill: none; stroke-width: 28; }
+    .donut-area { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+    .donut-ring { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
+    .donut-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .donut-ring circle { fill: none; stroke-width: 24; }
     .donut-center {
       position: absolute; inset: 0; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
     }
-    .donut-center .dc-num { font-size: 1.6rem; font-weight: 800; }
-    .donut-center .dc-label { font-size: 0.72rem; color: var(--text2); }
-    .donut-legend { flex: 1; min-width: 200px; }
-    .legend-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; margin-bottom: 0.45rem; }
-    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .legend-item .lpct { margin-left: auto; font-weight: 600; color: var(--text2); font-size: 0.8rem; }
-
-    /* Grid 2col */
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .grid2 .survey-block { margin-bottom: 0; }
-
-    /* Data table */
-    .dtable { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    .dtable th {
-      text-align: left; padding: 0.5rem 0.8rem; font-weight: 600;
-      border-bottom: 2px solid var(--border); color: var(--text2); font-size: 0.78rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
+    .donut-center .dc-n { font-size: 1.5rem; font-weight: 800; color: var(--green); }
+    .donut-center .dc-l { font-size: 0.72rem; color: var(--text2); }
+    .donut-list { flex: 1; min-width: 180px; }
+    .donut-list .dl-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; margin-bottom: 0.4rem;
     }
-    .dtable td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); }
-    .dtable tr:last-child td { border-bottom: none; }
-    .dtable .hl-cell { color: var(--accent); font-weight: 600; }
+    .donut-list .dl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .donut-list .dl-pct { margin-left: auto; font-weight: 600; color: var(--text2); font-size: 0.8rem; }
 
-    /* Insight */
-    .insight {
-      background: color-mix(in srgb, var(--accent) 6%, var(--card));
-      border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0;
-      padding: 1rem 1.2rem; margin-top: 1.2rem;
+    /* Insight callout */
+    .callout {
+      background: var(--warm-light); border-left: 3px solid var(--warm);
+      border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; margin-top: 1.2rem;
     }
-    .insight .ins-title { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-bottom: 0.3rem; }
-    .insight p { font-size: 0.85rem; color: var(--text2); }
+    .callout .co-title { font-size: 0.78rem; font-weight: 700; color: var(--warm); margin-bottom: 0.2rem; }
+    .callout p { font-size: 0.84rem; color: var(--text2); }
+
+    /* Result — 大数字 + 标签 */
+    .result-section {
+      background: var(--green-light); border-radius: 16px;
+      padding: 3rem 2rem; text-align: center; margin: 2rem 0;
+    }
+    .result-section .r-big {
+      font-size: 3.2rem; font-weight: 800; color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+    .result-section .r-desc { color: var(--text2); font-size: 0.95rem; margin-top: 0.3rem; }
+    .result-tags {
+      display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem;
+    }
+    .result-tags span {
+      font-size: 0.78rem; padding: 0.3rem 0.75rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 999px; color: var(--text2);
+    }
+
+    /* Skills */
+    .tags-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .tags-row span {
+      font-size: 0.82rem; padding: 0.35rem 0.9rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text2);
+    }
 
     /* Footer */
-    footer {
-      text-align: center; padding: 2.5rem 1.5rem; color: var(--text2); font-size: 0.78rem;
-      border-top: 1px solid var(--border); max-width: 920px; margin: 1rem auto 0;
+    .footer {
+      text-align: center; padding: 3rem 0; color: var(--text2); font-size: 0.8rem;
+      border-top: 1px solid var(--border); margin-top: 3rem;
     }
+    .footer .f-heart { color: var(--green); }
 
     /* Fade */
-    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.65s, transform 0.65s; }
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 700px) {
-      .stats { gap: 1.2rem; }
-      .stat .num { font-size: 1.5rem; }
-      .survey-overview { grid-template-columns: repeat(3, 1fr); }
-      .grid2 { grid-template-columns: 1fr; }
-      .donut-row { flex-direction: column; }
-      nav .links a.nl { display: none; }
+      .stats-bar { gap: 1.5rem; }
+      .stats-bar .s-num { font-size: 1.8rem; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .survey-grid { grid-template-columns: 1fr; }
+      .donut-area { flex-direction: column; }
+      .nav-links a { display: none; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="inner">
-    <span class="logo">Project Portfolio</span>
-    <div class="links">
-      <a class="nl" href="#research">调研</a>
-      <a class="nl" href="#product">产品</a>
-      <a class="nl" href="#operation">运营</a>
-      <a class="nl" href="#survey">数据</a>
-      <a class="nl" href="#result">成果</a>
-      <button id="theme-toggle">🌙</button>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero -->
-<div class="hero">
-  <div>
-    <h1>流浪动物IP公益项目<br><span class="hl">从用户洞察到产品化落地</span></h1>
-    <p class="lead">以数据驱动调研为起点，完成IP孵化、产品设计、私域运营与线下执行的全链路实践，收益全额反哺流浪动物救助。</p>
-    <div class="stats">
-      <div class="stat"><div class="num" data-target="587">0</div><div class="sl">问卷及访谈</div></div>
-      <div class="stat"><div class="num" data-target="1243">0</div><div class="sl">私域用户</div></div>
-      <div class="stat"><div class="num" data-target="8620">0</div><div class="sl">总盈利(元)</div></div>
-      <div class="stat"><div class="num" data-target="300">0</div><div class="sl">救助动物(只)</div></div>
+<div class="nav">
+  <div class="container">
+    <span class="nav-logo">守护行动</span>
+    <div class="nav-links">
+      <a href="#about">关于我们</a>
+      <a href="#research">调研</a>
+      <a href="#product">产品</a>
+      <a href="#data">数据</a>
+      <a href="#result">成果</a>
     </div>
   </div>
 </div>
 
-<!-- 1. Research -->
-<section id="research" class="fade-up">
-  <span class="stag">01 / 市场调研</span>
-  <h2>精准锚定核心受众</h2>
-  <p class="desc">通过587份问卷及深度访谈，构建用户画像，发现62%的目标用户属于"情感陪伴型"消费群体，为后续IP定位与产品策略提供数据支撑。</p>
-  <div class="card-grid">
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <span class="hero-badge">流浪动物 · IP公益项目</span>
+    <h1>用创意守护<br>每一个<em>小生命</em></h1>
+    <p>我们相信，一份小小的善意也能带来改变。通过市场调研、原创IP设计与社群运营，将爱心转化为实实在在的救助力量。</p>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="container">
+  <div class="stats-bar">
+    <div class="s-item"><div class="s-num" data-target="587">0</div><div class="s-label">问卷调研</div></div>
+    <div class="s-item"><div class="s-num" data-target="1243">0</div><div class="s-label">爱心用户</div></div>
+    <div class="s-item"><div class="s-num" data-target="8620">0</div><div class="s-label">善款筹集(元)</div></div>
+    <div class="s-item"><div class="s-num" data-target="300">0</div><div class="s-label">救助动物(只)</div></div>
+  </div>
+</div>
+
+<!-- About -->
+<div class="container sec fade-up" id="about">
+  <div class="sec-head">
+    <div class="sec-tag">About Us</div>
+    <h2>我们是谁</h2>
+    <p>一群热爱动物的大学生，用专业所学为流浪动物做一点实事。</p>
+  </div>
+  <p style="color:var(--text2); font-size:0.95rem; max-width:680px; line-height:2;">
+    项目以数据驱动调研为起点，将流浪动物化为原创动漫IP形象，衍生出钥匙扣、抱枕等实体周边。通过QQ私域社群精细化运营，最终实现总盈利8,620元，收益全额用于流浪动物的绝育与救助，累计帮助超过300只小生命。
+  </p>
+</div>
+
+<!-- Research -->
+<div class="container sec fade-up" id="research">
+  <div class="sec-head">
+    <div class="sec-tag">Research</div>
+    <h2>从调研出发，倾听用户</h2>
+    <p>587份问卷与深度访谈，让我们真正理解了用户想要什么。</p>
+  </div>
+  <div class="cards">
     <div class="card">
-      <div class="icon">📋</div>
-      <h3>问卷设计与投放</h3>
-      <p>设计覆盖消费偏好、情感诉求、价格敏感度等维度的问卷，定向投放至目标社群。</p>
-      <span class="metric">587 份有效样本</span>
+      <div class="card-icon">📋</div>
+      <h3>问卷调研</h3>
+      <p>设计覆盖消费偏好、情感诉求、价格敏感度的问卷，14天内回收587份有效样本，有效率93%。</p>
+      <span class="card-tag">587 份有效</span>
     </div>
     <div class="card">
-      <div class="icon">🎯</div>
-      <h3>用户画像构建</h3>
-      <p>基于聚类分析，识别出"情感陪伴型"为核心受众，占比62%，验证了IP情感化路线的可行性。</p>
-      <span class="metric">62% 核心受众</span>
+      <div class="card-icon">🎯</div>
+      <h3>用户画像</h3>
+      <p>通过聚类分析发现，62%的目标用户属于"情感陪伴型"消费群体——她们购买不只是为了产品，更是为了陪伴与善意。</p>
+      <span class="card-tag">62% 情感陪伴型</span>
     </div>
     <div class="card">
-      <div class="icon">💬</div>
-      <h3>深度访谈验证</h3>
-      <p>对典型用户进行1v1访谈，挖掘深层需求：陪伴感、公益认同、萌系审美偏好。</p>
-      <span class="metric">需求洞察闭环</span>
+      <div class="card-icon">💬</div>
+      <h3>深度访谈</h3>
+      <p>与典型用户一对一交流，挖掘出"陪伴感""公益认同""萌系审美"三大核心诉求。</p>
+      <span class="card-tag">需求洞察闭环</span>
     </div>
   </div>
-</section>
+</div>
 
-<!-- 2. Product -->
-<section id="product" class="fade-up">
-  <span class="stag">02 / IP产品化</span>
-  <h2>从形象到爆品的全链路</h2>
-  <p class="desc">将流浪动物化为原创动漫IP形象，衍生出多品类实体周边；搭建品类矩阵评估模型，筛选出8款高潜爆品，单品毛利率高达63%。</p>
-  <div class="card-grid">
-    <div class="card"><div class="icon">🎨</div><h3>IP形象设计</h3><p>以真实流浪动物为原型，设计原创动漫IP形象，赋予每只角色独特性格与故事线。</p></div>
-    <div class="card"><div class="icon">🔑</div><h3>周边衍生开发</h3><p>围绕IP形象开发钥匙扣、抱枕、贴纸等实体周边，覆盖不同价格带与使用场景。</p></div>
-    <div class="card"><div class="icon">📊</div><h3>品类矩阵评估</h3><p>搭建包含市场需求、成本结构、竞争强度等维度的评估模型，系统化筛选爆品。</p><span class="metric">8 款高潜爆品</span></div>
-    <div class="card"><div class="icon">💰</div><h3>成本与定价优化</h3><p>针对学生群体消费力，采用薄利多销策略，优化供应链渠道，采购成本下降18%。</p><span class="metric">毛利率 63%</span></div>
+<!-- Product -->
+<div class="container sec fade-up" id="product">
+  <div class="sec-head">
+    <div class="sec-tag">Product</div>
+    <h2>从故事到产品</h2>
+    <p>每一只流浪动物都有自己的故事，我们把这些故事变成了可以带走的温暖。</p>
   </div>
-</section>
-
-<!-- 3. Operation -->
-<section id="operation" class="fade-up">
-  <span class="stag">03 / 私域运营</span>
-  <h2>全生命周期精细化运营</h2>
-  <p class="desc">搭建QQ私域流量池，设计"预热-种草-转化"三阶漏斗模型，通过精细化运营实现用户留存与高效转化。</p>
-  <div class="timeline">
-    <div class="tl-item"><h3>私域池搭建</h3><p>以QQ群为核心阵地，沉淀1,243名目标用户，建立分层标签体系。</p></div>
-    <div class="tl-item"><h3>预热阶段</h3><p>通过IP故事连载、幕后花絮等内容制造期待感，激活沉默用户。</p></div>
-    <div class="tl-item"><h3>种草阶段</h3><p>发布产品实拍、用户UGC、公益故事，建立信任与情感连接。</p></div>
-    <div class="tl-item"><h3>转化阶段</h3><p>策划线上拼团裂变活动，限时优惠+社交分享驱动转化，日均互动量提升2.3倍。</p></div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h3>IP形象设计</h3>
+      <p>以真实流浪动物为原型，赋予每只角色独特的名字、性格和故事线，让每一次购买都是一次有温度的连接。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔑</div>
+      <h3>周边衍生</h3>
+      <p>钥匙扣、抱枕、贴纸、帆布袋……覆盖不同价格带，让爱心可以被"随身携带"。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>科学选品</h3>
+      <p>搭建品类矩阵评估模型，从市场需求、成本结构、竞争强度三个维度筛选，最终锁定8款高潜爆品。</p>
+      <span class="card-tag">8 款爆品</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <h3>薄利多销</h3>
+      <p>针对学生群体消费力，优化供应链渠道降低18%采购成本，以亲民价格让更多人参与公益。</p>
+      <span class="card-tag">采购成本 -18%</span>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- 4. Survey Data (Embedded) -->
-<section id="survey" class="fade-up">
-  <span class="stag">04 / 调研数据</span>
-  <h2>587份问卷数据可视化</h2>
-  <p class="desc">核心维度数据：用户分群、品类偏好与价格接受度。</p>
+<!-- Operation steps -->
+<div class="container sec fade-up" id="operation">
+  <div class="sec-head">
+    <div class="sec-tag">Operation</div>
+    <h2>社群运营四步走</h2>
+    <p>用心经营每一个用户关系，让善意持续流动。</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>建池</h4>
+      <p>QQ群沉淀<br>1,243名目标用户</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>预热</h4>
+      <p>IP故事连载<br>幕后花絮制造期待</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>种草</h4>
+      <p>产品实拍+公益故事<br>建立信任连接</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>转化</h4>
+      <p>拼团裂变活动<br>互动量提升2.3倍</p>
+    </div>
+  </div>
+</div>
 
-  <!-- Overview numbers -->
-  <div class="survey-overview">
-    <div class="ov-card"><div class="ov-num" data-target="587">0</div><div class="ov-label">有效问卷</div></div>
-    <div class="ov-card"><div class="ov-num" data-target="93">0</div><div class="ov-label">有效率(%)</div></div>
-    <div class="ov-card"><div class="ov-num" data-target="14">0</div><div class="ov-label">调研天数</div></div>
+<!-- Survey Data -->
+<div class="container sec fade-up" id="data">
+  <div class="sec-head">
+    <div class="sec-tag">Data</div>
+    <h2>用数据说话</h2>
+    <p>587份问卷背后的真实用户洞察。</p>
   </div>
 
-  <!-- Donut: audience segmentation -->
-  <div class="survey-block">
-    <h3>用户分群分析</h3>
-    <p class="sub">基于消费动机与情感诉求的聚类分析</p>
-    <div class="donut-row">
-      <div class="donut-wrap">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="70" stroke="var(--c1)" stroke-dasharray="0 440" data-pct="62"/>
-          <circle cx="100" cy="100" r="70" stroke="var(--c2)" stroke-dasharray="0 440" data-pct="18"/>
-          <circle cx="100" cy="100" r="70" stroke="var(--c3)" stroke-dasharray="0 440" data-pct="12"/>
-          <circle cx="100" cy="100" r="70" stroke="var(--c4)" stroke-dasharray="0 440" data-pct="8"/>
-        </svg>
-        <div class="donut-center"><div class="dc-num">62%</div><div class="dc-label">核心受众</div></div>
-      </div>
-      <div class="donut-legend">
-        <div class="legend-item"><span class="legend-dot" style="background:var(--c1)"></span>情感陪伴型 <span class="lpct">62%</span></div>
-        <div class="legend-item"><span class="legend-dot" style="background:var(--c2)"></span>公益认同型 <span class="lpct">18%</span></div>
-        <div class="legend-item"><span class="legend-dot" style="background:var(--c3)"></span>收藏爱好型 <span class="lpct">12%</span></div>
-        <div class="legend-item"><span class="legend-dot" style="background:var(--c4)"></span>随机购买型 <span class="lpct">8%</span></div>
-        <div class="insight">
-          <div class="ins-title">核心发现</div>
-          <p>62%的用户购买动机为"情感陪伴"，以在校大学生为主，消费力有限但公益意愿强，印证了IP情感化+低客单价路线的正确性。</p>
+  <div class="survey-grid">
+    <!-- Donut -->
+    <div class="survey-card">
+      <h3>用户分群</h3>
+      <p class="sc-sub">消费动机聚类分析</p>
+      <div class="donut-area">
+        <div class="donut-ring">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="70" stroke="var(--green)" stroke-dasharray="0 440" data-pct="62"/>
+            <circle cx="100" cy="100" r="70" stroke="var(--warm)" stroke-dasharray="0 440" data-pct="18"/>
+            <circle cx="100" cy="100" r="70" stroke="#8bbfa0" stroke-dasharray="0 440" data-pct="12"/>
+            <circle cx="100" cy="100" r="70" stroke="#c5d6c9" stroke-dasharray="0 440" data-pct="8"/>
+          </svg>
+          <div class="donut-center"><div class="dc-n">62%</div><div class="dc-l">核心受众</div></div>
+        </div>
+        <div class="donut-list">
+          <div class="dl-item"><span class="dl-dot" style="background:var(--green)"></span>情感陪伴型 <span class="dl-pct">62%</span></div>
+          <div class="dl-item"><span class="dl-dot" style="background:var(--warm)"></span>公益认同型 <span class="dl-pct">18%</span></div>
+          <div class="dl-item"><span class="dl-dot" style="background:#8bbfa0"></span>收藏爱好型 <span class="dl-pct">12%</span></div>
+          <div class="dl-item"><span class="dl-dot" style="background:#c5d6c9"></span>随机购买型 <span class="dl-pct">8%</span></div>
         </div>
       </div>
+      <div class="callout">
+        <div class="co-title">发现</div>
+        <p>超六成用户因"情感陪伴"购买，以在校大学生为主，验证了IP情感化路线的可行性。</p>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="survey-card">
+      <h3>价格接受度</h3>
+      <p class="sc-sub">单件周边可接受价格区间</p>
+      <div class="bar"><div class="bar-top"><span>10元以下</span><span class="bar-val">18.5%</span></div><div class="bar-track"><div class="bar-fill" style="--w:18.5%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>10-25元</span><span class="bar-val">42.3%</span></div><div class="bar-track"><div class="bar-fill" style="--w:42.3%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>25-50元</span><span class="bar-val">26.8%</span></div><div class="bar-track"><div class="bar-fill" style="--w:26.8%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>50-80元</span><span class="bar-val">8.9%</span></div><div class="bar-track"><div class="bar-fill" style="--w:8.9%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>80元以上</span><span class="bar-val">3.5%</span></div><div class="bar-track"><div class="bar-fill" style="--w:3.5%"></div></div></div>
+      <div class="callout">
+        <div class="co-title">定价策略</div>
+        <p>60.8%用户偏好25元以下，主力定价9.9-29元，兼顾转化率与公益目标。</p>
+      </div>
+    </div>
+
+    <!-- Product preference -->
+    <div class="survey-card">
+      <h3>品类偏好</h3>
+      <p class="sc-sub">最想购买的周边品类 TOP5</p>
+      <div class="bar"><div class="bar-top"><span>毛绒抱枕</span><span class="bar-val">73.2%</span></div><div class="bar-track"><div class="bar-fill" style="--w:73.2%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>钥匙扣/挂件</span><span class="bar-val">68.9%</span></div><div class="bar-track"><div class="bar-fill" style="--w:68.9%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>贴纸套装</span><span class="bar-val">61.4%</span></div><div class="bar-track"><div class="bar-fill" style="--w:61.4%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>帆布袋</span><span class="bar-val">38.1%</span></div><div class="bar-track"><div class="bar-fill" style="--w:38.1%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>手机壳</span><span class="bar-val">32.6%</span></div><div class="bar-track"><div class="bar-fill" style="--w:32.6%"></div></div></div>
+      <div class="callout">
+        <div class="co-title">选品依据</div>
+        <p>抱枕、钥匙扣、贴纸为TOP3，结合成本结构最终确定8款爆品组合。</p>
+      </div>
+    </div>
+
+    <!-- Decision factors -->
+    <div class="survey-card">
+      <h3>购买决策因素</h3>
+      <p class="sc-sub">影响购买的最主要因素</p>
+      <div class="bar"><div class="bar-top"><span>IP形象打动我</span><span class="bar-val">78.4%</span></div><div class="bar-track"><div class="bar-fill" style="--w:78.4%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>收益用于公益</span><span class="bar-val">65.1%</span></div><div class="bar-track"><div class="bar-fill" style="--w:65.1%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>产品实用性</span><span class="bar-val">52.3%</span></div><div class="bar-track"><div class="bar-fill" style="--w:52.3%"></div></div></div>
+      <div class="bar"><div class="bar-top"><span>价格合理</span><span class="bar-val">47.8%</span></div><div class="bar-track"><div class="bar-fill" style="--w:47.8%"></div></div></div>
+      <div class="callout">
+        <div class="co-title">关键结论</div>
+        <p>"IP打动我"和"公益属性"是前两大决策因素，产品策略应强化故事叙事与公益透明化。</p>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- Product preference -->
-  <div class="survey-block">
-    <h3>产品品类偏好</h3>
-    <p class="sub">Q: "以下周边品类中，您最想购买哪些？"（多选）</p>
-    <div class="hbar"><div class="hbar-label"><span>毛绒抱枕</span><span>73.2%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:73.2%; background:var(--c1)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>钥匙扣/挂件</span><span>68.9%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:68.9%; background:var(--c2)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>贴纸套装</span><span>61.4%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:61.4%; background:var(--c3)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>帆布袋</span><span>38.1%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:38.1%; background:var(--c5)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>手机壳</span><span>32.6%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:32.6%; background:var(--c6)"></div></div></div>
-    <div class="insight">
-      <div class="ins-title">选品策略</div>
-      <p>抱枕、钥匙扣、贴纸为TOP3品类，综合偏好度与成本结构，最终筛选出8款高潜爆品组合。</p>
+<!-- Offline -->
+<div class="container sec fade-up" id="offline">
+  <div class="sec-head">
+    <div class="sec-tag">Offline</div>
+    <h2>线下活动落地</h2>
+    <p>从筹备到执行，每一步都用心。</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏪</div>
+      <h3>陈列与动线</h3>
+      <p>规划产品陈列方案，设计用户动线与指引，优化现场体验与转化路径。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📢</div>
+      <h3>物料筹备</h3>
+      <p>海报、易拉宝、价签……统一视觉风格，让IP形象走进现实场景。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <h3>实时复盘</h3>
+      <p>活动期间持续跟踪销售数据，实时调整策略，确保每一分善款都不被浪费。</p>
     </div>
   </div>
+</div>
 
-  <!-- Price sensitivity -->
-  <div class="survey-block">
-    <h3>价格接受度分布</h3>
-    <p class="sub">Q: "单件周边产品，您能接受的价格区间是？"</p>
-    <div class="hbar"><div class="hbar-label"><span>10元以下</span><span>18.5%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:18.5%; background:var(--c4)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>10-25元</span><span>42.3%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:42.3%; background:var(--c5)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>25-50元</span><span>26.8%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:26.8%; background:var(--c1)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>50-80元</span><span>8.9%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:8.9%; background:var(--c2)"></div></div></div>
-    <div class="hbar"><div class="hbar-label"><span>80元以上</span><span>3.5%</span></div><div class="hbar-track"><div class="hbar-fill" style="--w:3.5%; background:var(--c3)"></div></div></div>
-    <div class="insight">
-      <div class="ins-title">定价依据</div>
-      <p>60.8%用户偏好25元以下区间（以学生群体为主），结合成本控制与心理定价，主力产品定价9.9-29元，兼顾转化率与毛利空间。</p>
-    </div>
-  </div>
-
-</section>
-
-<!-- 5. Offline -->
-<section id="offline" class="fade-up">
-  <span class="stag">05 / 线下执行</span>
-  <h2>活动运营与落地执行</h2>
-  <p class="desc">从物料筹备到现场执行，全程跟进销售数据并实时复盘，确保活动效果最大化。</p>
-  <div class="card-grid">
-    <div class="card"><div class="icon">🏪</div><h3>陈列与动线设计</h3><p>规划周边产品陈列方案，设计现场用户动线与指引，优化体验与转化路径。</p></div>
-    <div class="card"><div class="icon">📢</div><h3>宣发物料筹备</h3><p>制作海报、易拉宝、价签等线下物料，统一视觉风格，强化IP认知。</p></div>
-    <div class="card"><div class="icon">📈</div><h3>实时数据复盘</h3><p>活动期间持续跟踪销售数据，实时调整策略，确保业绩目标达成。</p></div>
-  </div>
-</section>
-
-<!-- 6. Result -->
-<section id="result" class="fade-up">
-  <span class="stag">06 / 项目成果</span>
-  <h2>数据说话</h2>
-  <div class="result-banner">
-    <div class="big-num">¥8,620</div>
-    <p>活动总盈利，收益全额反哺公益</p>
+<!-- Result -->
+<div class="container" id="result">
+  <div class="result-section fade-up">
+    <div class="r-big" data-target="8620" data-prefix="¥">¥0</div>
+    <div class="r-desc">活动总盈利，收益全额反哺流浪动物救助</div>
     <div class="result-tags">
-      <span>587份调研问卷</span>
-      <span>62%核心受众定位</span>
+      <span>587份问卷</span>
+      <span>62%核心受众</span>
       <span>采购成本-18%</span>
-      <span>单品毛利63%</span>
-      <span>1,243私域用户</span>
+      <span>1,243爱心用户</span>
       <span>互动量+2.3x</span>
       <span>300+动物救助</span>
     </div>
   </div>
-</section>
+</div>
 
 <!-- Skills -->
-<section class="fade-up">
-  <span class="stag">能力沉淀</span>
-  <h2>项目中锻炼的核心能力</h2>
-  <div class="skill-row">
-    <span class="skill-tag">市场调研</span>
-    <span class="skill-tag">用户画像</span>
-    <span class="skill-tag">IP孵化</span>
-    <span class="skill-tag">产品设计</span>
-    <span class="skill-tag">供应链管理</span>
-    <span class="skill-tag">定价策略</span>
-    <span class="skill-tag">私域运营</span>
-    <span class="skill-tag">漏斗模型</span>
-    <span class="skill-tag">活动策划</span>
-    <span class="skill-tag">数据分析</span>
-    <span class="skill-tag">项目管理</span>
-    <span class="skill-tag">公益实践</span>
+<div class="container sec fade-up">
+  <div class="sec-head">
+    <div class="sec-tag">Capabilities</div>
+    <h2>项目中沉淀的能力</h2>
   </div>
-</section>
+  <div class="tags-row">
+    <span>市场调研</span><span>用户画像</span><span>IP孵化</span><span>产品设计</span>
+    <span>供应链管理</span><span>定价策略</span><span>私域运营</span><span>漏斗模型</span>
+    <span>活动策划</span><span>数据分析</span><span>项目管理</span><span>公益实践</span>
+  </div>
+</div>
 
-<footer>&copy; 2026 流浪动物IP公益项目. 守护每一个小生命，让公益更有温度。</footer>
+<div class="footer container">
+  <p>守护每一个小生命，让公益更有温度 <span class="f-heart">♥</span></p>
+  <p style="margin-top:0.3rem;">&copy; 2026 流浪动物IP公益项目</p>
+</div>
 
 <script>
-  // Theme
-  const toggle = document.getElementById('theme-toggle');
-  const saved = localStorage.getItem('theme');
-  if (saved) { document.documentElement.dataset.theme = saved; toggle.textContent = saved === 'light' ? '☀️' : '🌙'; }
-  toggle.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-    document.documentElement.dataset.theme = next; localStorage.setItem('theme', next);
-    toggle.textContent = next === 'light' ? '☀️' : '🌙';
-  });
-
   // Fade up
-  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  }), { threshold: 0.12 });
   document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-  // Horizontal bar fill
+  // Bar fill
   const barObs = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
-    e.target.querySelectorAll('.hbar-fill').forEach(bar => { bar.style.width = bar.style.getPropertyValue('--w'); });
+    e.target.querySelectorAll('.bar-fill').forEach(b => { b.style.width = b.style.getPropertyValue('--w'); });
     barObs.unobserve(e.target);
   }), { threshold: 0.15 });
-  document.querySelectorAll('.survey-block').forEach(el => barObs.observe(el));
+  document.querySelectorAll('.survey-card').forEach(el => barObs.observe(el));
 
-  // Donut chart
+  // Donut
   const donutObs = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     const circles = e.target.querySelectorAll('circle[data-pct]');
-    const r = 70, C = 2 * Math.PI * r;
+    const C = 2 * Math.PI * 70;
     let offset = 0;
     circles.forEach(c => {
-      const pct = +c.dataset.pct, len = C * pct / 100;
+      const len = C * (+c.dataset.pct) / 100;
       c.style.strokeDasharray = `${len} ${C}`;
       c.style.strokeDashoffset = `-${offset}`;
-      c.style.transition = 'stroke-dasharray 1.2s ease, stroke-dashoffset 1.2s ease';
+      c.style.transition = 'stroke-dasharray 1s ease, stroke-dashoffset 1s ease';
       offset += len;
     });
     donutObs.unobserve(e.target);
   }), { threshold: 0.3 });
-  document.querySelectorAll('.donut-wrap').forEach(el => donutObs.observe(el));
+  document.querySelectorAll('.donut-ring').forEach(el => donutObs.observe(el));
 
   // Counter
   const cntObs = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.querySelectorAll('[data-target]').forEach(el => {
-      const t = +el.dataset.target, dur = 1200, start = performance.now();
+      const t = +el.dataset.target, pre = el.dataset.prefix || '';
+      const dur = 1200, start = performance.now();
       const tick = now => {
         const p = Math.min((now - start) / dur, 1);
-        el.textContent = Math.floor(t * (1 - Math.pow(1 - p, 3)));
+        el.textContent = pre + Math.floor(t * (1 - Math.pow(1 - p, 3))).toLocaleString();
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
     });
     cntObs.unobserve(e.target);
   }), { threshold: 0.3 });
-  document.querySelectorAll('.stats, .survey-overview').forEach(el => cntObs.observe(el));
+  document.querySelectorAll('.stats-bar, .result-section').forEach(el => cntObs.observe(el));
 </script>
 </body>
 </html>
