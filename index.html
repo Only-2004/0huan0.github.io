@@ -3,155 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人主页</title>
+  <title>流浪动物IP公益项目 — 项目展示</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --bg2: #1e293b;
-      --text: #e2e8f0;
-      --text2: #94a3b8;
-      --accent: #38bdf8;
-      --accent2: #818cf8;
-      --card: #1e293b;
-      --border: #334155;
+      --bg: #0c1220;
+      --bg2: #141c2e;
+      --text: #e8ecf4;
+      --text2: #8896b0;
+      --accent: #f59e42;
+      --accent2: #f472b6;
+      --accent3: #38bdf8;
+      --card: #161e30;
+      --border: #232d44;
+      --glow: rgba(245, 158, 66, 0.08);
     }
     [data-theme="light"] {
-      --bg: #f8fafc;
+      --bg: #faf9f7;
       --bg2: #ffffff;
-      --text: #1e293b;
-      --text2: #64748b;
-      --accent: #0284c7;
-      --accent2: #6366f1;
+      --text: #1a1a1a;
+      --text2: #6b7280;
+      --accent: #ea7317;
+      --accent2: #db2777;
+      --accent3: #0284c7;
       --card: #ffffff;
-      --border: #e2e8f0;
+      --border: #e5e7eb;
+      --glow: rgba(234, 115, 23, 0.06);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.75;
       transition: background 0.3s, color 0.3s;
     }
     a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
     /* Nav */
     nav {
-      position: fixed; top: 0; width: 100%;
-      background: var(--bg); border-bottom: 1px solid var(--border);
-      z-index: 100; backdrop-filter: blur(12px);
-      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom: 1px solid var(--border);
     }
     nav .inner {
-      max-width: 800px; margin: 0 auto;
-      padding: 0.8rem 1.5rem;
+      max-width: 900px; margin: 0 auto;
+      padding: 0.7rem 1.5rem;
       display: flex; justify-content: space-between; align-items: center;
     }
-    nav .links { display: flex; gap: 1.5rem; align-items: center; }
-    nav a { color: var(--text2); font-size: 0.9rem; transition: color 0.2s; }
-    nav a:hover { color: var(--accent); text-decoration: none; }
+    nav .logo { font-weight: 700; font-size: 0.95rem; color: var(--text); letter-spacing: 0.02em; }
+    nav .links { display: flex; gap: 1.2rem; align-items: center; }
+    nav a.nav-link { color: var(--text2); font-size: 0.85rem; transition: color 0.2s; }
+    nav a.nav-link:hover { color: var(--accent); }
     #theme-toggle {
       background: none; border: 1px solid var(--border);
       color: var(--text2); cursor: pointer; border-radius: 6px;
-      padding: 0.3rem 0.6rem; font-size: 1rem;
+      padding: 0.25rem 0.55rem; font-size: 0.95rem; transition: border-color 0.2s;
     }
-
-    /* Sections */
-    section { max-width: 800px; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
-    h2 {
-      font-size: 1.1rem; text-transform: uppercase;
-      letter-spacing: 0.15em; color: var(--accent);
-      margin-bottom: 1.5rem; font-weight: 600;
-    }
+    #theme-toggle:hover { border-color: var(--accent); }
 
     /* Hero */
-    #hero {
-      padding-top: 8rem; text-align: center;
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 1.5rem 3rem;
+      position: relative; overflow: hidden;
     }
-    #hero h1 {
-      font-size: 2.8rem; font-weight: 700;
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, var(--glow), transparent);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+      line-height: 1.25; margin-bottom: 0.6rem;
+    }
+    .hero h1 .highlight {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    #hero .subtitle { color: var(--text2); font-size: 1.15rem; margin-top: 0.5rem; }
-    #hero .tagline { color: var(--text2); margin-top: 1.2rem; max-width: 500px; margin-inline: auto; }
-    .social-links { margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; }
-    .social-links a {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--border); color: var(--text2);
-      transition: all 0.2s; font-size: 1.2rem;
+    .hero .lead {
+      font-size: 1.1rem; color: var(--text2); max-width: 560px; margin: 0 auto 2rem;
     }
-    .social-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    /* About */
-    .about-text { color: var(--text2); font-size: 1.05rem; }
+    /* Stats bar */
+    .stats {
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .stat { text-align: center; }
+    .stat .num {
+      font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat .label { font-size: 0.8rem; color: var(--text2); margin-top: 0.15rem; }
 
-    /* Skills */
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    /* Section */
+    section { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .section-tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent);
+      padding: 0.25rem 0.8rem; border-radius: 999px; margin-bottom: 0.8rem;
+    }
+    section h2 {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem;
+    }
+    section .desc { color: var(--text2); font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 680px; }
+
+    /* Cards */
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1rem;
     }
-    .skill-card {
+    .card {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.2rem 1.4rem;
-      transition: transform 0.2s, border-color 0.2s;
+      border-radius: 12px; padding: 1.4rem 1.5rem;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
     }
-    .skill-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-    .skill-card h3 { font-size: 0.95rem; margin-bottom: 0.4rem; }
-    .skill-card p { font-size: 0.85rem; color: var(--text2); }
-    .skill-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 0.6rem; }
-    .skill-bar div { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-
-    /* Projects */
-    .project-list { display: flex; flex-direction: column; gap: 1rem; }
-    .project-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.3rem 1.5rem;
-      transition: transform 0.2s, border-color 0.2s;
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     }
-    .project-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .project-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
-    .project-card p { font-size: 0.9rem; color: var(--text2); }
-    .project-card .tags { margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .project-card .tag {
-      font-size: 0.75rem; padding: 0.15rem 0.6rem;
-      border-radius: 999px; border: 1px solid var(--border);
-      color: var(--text2);
+    .card .icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .card p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+    .card .metric {
+      display: inline-block; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600;
+      color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent);
+      padding: 0.15rem 0.55rem; border-radius: 6px;
     }
 
-    /* Contact */
-    .contact-methods {
-      display: flex; flex-direction: column; gap: 0.8rem;
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0.45rem; top: 0.5rem; bottom: 0.5rem;
+      width: 2px; background: var(--border);
     }
-    .contact-item {
-      display: flex; align-items: center; gap: 0.8rem;
-      color: var(--text2); font-size: 0.95rem;
+    .tl-item { position: relative; margin-bottom: 2rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -1.65rem; top: 0.55rem;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg);
     }
-    .contact-item span.icon { font-size: 1.2rem; width: 2rem; text-align: center; }
+    .tl-item h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .tl-item p { font-size: 0.88rem; color: var(--text2); }
+
+    /* Result banner */
+    .result-banner {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--card)), var(--card));
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 2.5rem 2rem; text-align: center;
+      margin: 2rem 0;
+    }
+    .result-banner .big-num {
+      font-size: 3rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .result-banner p { color: var(--text2); margin-top: 0.3rem; font-size: 0.95rem; }
+    .result-tags {
+      display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.2rem;
+    }
+    .result-tags span {
+      font-size: 0.78rem; padding: 0.25rem 0.7rem;
+      border-radius: 999px; border: 1px solid var(--border); color: var(--text2);
+    }
+
+    /* Skills */
+    .skill-row {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem;
+    }
+    .skill-tag {
+      font-size: 0.8rem; padding: 0.3rem 0.8rem;
+      border-radius: 8px; border: 1px solid var(--border);
+      color: var(--text2); transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
     /* Footer */
     footer {
-      text-align: center; padding: 2rem 1.5rem;
-      color: var(--text2); font-size: 0.8rem;
+      text-align: center; padding: 2.5rem 1.5rem;
+      color: var(--text2); font-size: 0.78rem;
       border-top: 1px solid var(--border);
-      max-width: 800px; margin: 2rem auto 0;
+      max-width: 900px; margin: 1rem auto 0;
     }
 
-    /* Animate on scroll */
+    /* Fade up */
     .fade-up {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+    /* Responsive */
     @media (max-width: 600px) {
-      #hero h1 { font-size: 2rem; }
-      nav .links { gap: 0.8rem; }
-      nav .links a:not(#theme-toggle) { display: none; }
+      .stats { gap: 1.2rem; }
+      .stat .num { font-size: 1.5rem; }
+      nav .links a.nav-link { display: none; }
     }
   </style>
 </head>
@@ -159,111 +210,181 @@
 
 <nav>
   <div class="inner">
-    <a href="#hero" style="font-weight:600; color:var(--text);">HOME</a>
+    <span class="logo">Project Portfolio</span>
     <div class="links">
-      <a href="#about">关于</a>
-      <a href="#skills">技能</a>
-      <a href="#projects">项目</a>
-      <a href="#contact">联系</a>
+      <a class="nav-link" href="#research">调研</a>
+      <a class="nav-link" href="#product">产品</a>
+      <a class="nav-link" href="#operation">运营</a>
+      <a class="nav-link" href="#result">成果</a>
       <button id="theme-toggle" title="切换主题">🌙</button>
     </div>
   </div>
 </nav>
 
-<section id="hero">
-  <h1>你的名字</h1>
-  <p class="subtitle">全栈开发者 / AI 爱好者</p>
-  <p class="tagline">热爱技术，专注于构建智能化应用。目前在探索大模型与 Agent 技术的落地实践。</p>
-  <div class="social-links">
-    <a href="#" title="GitHub">GH</a>
-    <a href="#" title="邮箱">@</a>
-    <a href="#" title="博客">B</a>
+<!-- Hero -->
+<div class="hero">
+  <div>
+    <h1>流浪动物IP公益项目<br><span class="highlight">从用户洞察到产品化落地</span></h1>
+    <p class="lead">以数据驱动调研为起点，完成IP孵化、产品设计、私域运营与线下执行的全链路实践，收益全额反哺流浪动物救助。</p>
+    <div class="stats">
+      <div class="stat"><div class="num" data-target="587">0</div><div class="label">问卷及访谈</div></div>
+      <div class="stat"><div class="num" data-target="1243">0</div><div class="label">私域用户</div></div>
+      <div class="stat"><div class="num" data-target="8620">0</div><div class="label">总盈利(元)</div></div>
+      <div class="stat"><div class="num" data-target="300">0</div><div class="label">救助动物(只)</div></div>
+    </div>
   </div>
-</section>
+</div>
 
-<section id="about" class="fade-up">
-  <h2>关于我</h2>
-  <p class="about-text">
-    我是一名对 AI 和全栈开发充满热情的开发者。日常使用 Python、JavaScript 构建 Web 应用，
-    近期专注于大语言模型（LLM）应用开发，包括 Agent 架构设计、Function Calling、RAG 等方向。
-    喜欢用技术解决实际问题，让复杂的事情变得简单。
-  </p>
-</section>
-
-<section id="skills" class="fade-up">
-  <h2>技能</h2>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <h3>Python</h3>
-      <p>FastAPI / Flask / 数据处理</p>
-      <div class="skill-bar"><div style="width:90%"></div></div>
+<!-- 1. 调研 -->
+<section id="research" class="fade-up">
+  <span class="section-tag">01 / 市场调研</span>
+  <h2>精准锚定核心受众</h2>
+  <p class="desc">通过587份问卷及深度访谈，构建用户画像，发现62%的目标用户属于"情感陪伴型"消费群体，为后续IP定位与产品策略提供数据支撑。</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>问卷设计与投放</h3>
+      <p>设计覆盖消费偏好、情感诉求、价格敏感度等维度的问卷，定向投放至目标社群。</p>
+      <span class="metric">587 份有效样本</span>
     </div>
-    <div class="skill-card">
-      <h3>JavaScript / TS</h3>
-      <p>React / Vue / Node.js</p>
-      <div class="skill-bar"><div style="width:80%"></div></div>
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>用户画像构建</h3>
+      <p>基于聚类分析，识别出"情感陪伴型"为核心受众，占比62%，验证了IP情感化路线的可行性。</p>
+      <span class="metric">62% 核心受众</span>
     </div>
-    <div class="skill-card">
-      <h3>AI / LLM</h3>
-      <p>Agent / Function Calling / RAG</p>
-      <div class="skill-bar"><div style="width:85%"></div></div>
-    </div>
-    <div class="skill-card">
-      <h3>DevOps</h3>
-      <p>Linux / Nginx / Docker / CI/CD</p>
-      <div class="skill-bar"><div style="width:70%"></div></div>
-    </div>
-    <div class="skill-card">
-      <h3>数据库</h3>
-      <p>SQLite / MySQL / Redis</p>
-      <div class="skill-bar"><div style="width:75%"></div></div>
-    </div>
-    <div class="skill-card">
-      <h3>其他</h3>
-      <p>Git / REST API / 微服务</p>
-      <div class="skill-bar"><div style="width:70%"></div></div>
+    <div class="card">
+      <div class="icon">💬</div>
+      <h3>深度访谈验证</h3>
+      <p>对典型用户进行1v1访谈，挖掘深层需求：陪伴感、公益认同、萌系审美偏好。</p>
+      <span class="metric">需求洞察闭环</span>
     </div>
   </div>
 </section>
 
-<section id="projects" class="fade-up">
-  <h2>项目</h2>
-  <div class="project-list">
-    <div class="project-card">
-      <h3>QQ Agent — 校园 AI 助手</h3>
-      <p>基于通义千问大模型的智能助手，支持自然语言交互、工具调用、定时提醒、需求匹配等功能。</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">FastAPI</span>
-        <span class="tag">LLM Agent</span>
-        <span class="tag">SQLite</span>
-      </div>
+<!-- 2. 产品 -->
+<section id="product" class="fade-up">
+  <span class="section-tag">02 / IP产品化</span>
+  <h2>从形象到爆品的全链路</h2>
+  <p class="desc">将流浪动物化为原创动漫IP形象，衍生出多品类实体周边；搭建品类矩阵评估模型，筛选出8款高潜爆品，单品毛利率高达63%。</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">🎨</div>
+      <h3>IP形象设计</h3>
+      <p>以真实流浪动物为原型，设计原创动漫IP形象，赋予每只角色独特性格与故事线。</p>
     </div>
-    <div class="project-card">
-      <h3>个人主页</h3>
-      <p>纯静态单页面个人简历网站，支持深色/浅色主题切换，响应式设计。</p>
-      <div class="tags">
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>
-      </div>
+    <div class="card">
+      <div class="icon">🔑</div>
+      <h3>周边衍生开发</h3>
+      <p>围绕IP形象开发钥匙扣、抱枕、贴纸等实体周边，覆盖不同价格带与使用场景。</p>
+    </div>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>品类矩阵评估</h3>
+      <p>搭建包含市场需求、成本结构、竞争强度等维度的评估模型，系统化筛选爆品。</p>
+      <span class="metric">8 款高潜爆品</span>
+    </div>
+    <div class="card">
+      <div class="icon">💰</div>
+      <h3>成本与定价优化</h3>
+      <p>结合成本加成与心理定价策略，优化供应链渠道，采购成本下降18%。</p>
+      <span class="metric">毛利率 63%</span>
     </div>
   </div>
 </section>
 
-<section id="contact" class="fade-up">
-  <h2>联系我</h2>
-  <div class="contact-methods">
-    <div class="contact-item"><span class="icon">@</span> your-email@example.com</div>
-    <div class="contact-item"><span class="icon">GH</span> <a href="#">github.com/yourname</a></div>
-    <div class="contact-item"><span class="icon">B</span> <a href="#">你的博客地址</a></div>
+<!-- 3. 运营 -->
+<section id="operation" class="fade-up">
+  <span class="section-tag">03 / 私域运营</span>
+  <h2>全生命周期精细化运营</h2>
+  <p class="desc">搭建QQ私域流量池，设计"预热-种草-转化"三阶漏斗模型，通过精细化运营实现用户留存与高效转化。</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <h3>私域池搭建</h3>
+      <p>以QQ群为核心阵地，沉淀1,243名目标用户，建立分层标签体系。</p>
+    </div>
+    <div class="tl-item">
+      <h3>预热阶段</h3>
+      <p>通过IP故事连载、幕后花絮等内容制造期待感，激活沉默用户。</p>
+    </div>
+    <div class="tl-item">
+      <h3>种草阶段</h3>
+      <p>发布产品实拍、用户UGC、公益故事，建立信任与情感连接。</p>
+    </div>
+    <div class="tl-item">
+      <h3>转化阶段</h3>
+      <p>策划线上拼团裂变活动，限时优惠+社交分享驱动转化，日均互动量提升2.3倍。</p>
+    </div>
   </div>
 </section>
 
-<footer>&copy; 2026 你的名字. All rights reserved.</footer>
+<!-- 4. 线下 -->
+<section id="offline" class="fade-up">
+  <span class="section-tag">04 / 线下执行</span>
+  <h2>活动运营与落地执行</h2>
+  <p class="desc">从物料筹备到现场执行，全程跟进销售数据并实时复盘，确保活动效果最大化。</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">🏪</div>
+      <h3>陈列与动线设计</h3>
+      <p>规划周边产品陈列方案，设计现场用户动线与指引，优化体验与转化路径。</p>
+    </div>
+    <div class="card">
+      <div class="icon">📢</div>
+      <h3>宣发物料筹备</h3>
+      <p>制作海报、易拉宝、价签等线下物料，统一视觉风格，强化IP认知。</p>
+    </div>
+    <div class="card">
+      <div class="icon">📈</div>
+      <h3>实时数据复盘</h3>
+      <p>活动期间持续跟踪销售数据，实时调整策略，确保业绩目标达成。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Result -->
+<section id="result" class="fade-up">
+  <span class="section-tag">05 / 项目成果</span>
+  <h2>数据说话</h2>
+  <div class="result-banner">
+    <div class="big-num">¥8,620</div>
+    <p>活动总盈利，收益全额反哺公益</p>
+    <div class="result-tags">
+      <span>587份调研问卷</span>
+      <span>62%核心受众定位</span>
+      <span>采购成本-18%</span>
+      <span>单品毛利63%</span>
+      <span>1,243私域用户</span>
+      <span>互动量+2.3x</span>
+      <span>300+动物救助</span>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="fade-up">
+  <span class="section-tag">能力沉淀</span>
+  <h2>项目中锻炼的核心能力</h2>
+  <div class="skill-row">
+    <span class="skill-tag">市场调研</span>
+    <span class="skill-tag">用户画像</span>
+    <span class="skill-tag">IP孵化</span>
+    <span class="skill-tag">产品设计</span>
+    <span class="skill-tag">供应链管理</span>
+    <span class="skill-tag">定价策略</span>
+    <span class="skill-tag">私域运营</span>
+    <span class="skill-tag">漏斗模型</span>
+    <span class="skill-tag">活动策划</span>
+    <span class="skill-tag">数据分析</span>
+    <span class="skill-tag">项目管理</span>
+    <span class="skill-tag">公益实践</span>
+  </div>
+</section>
+
+<footer>&copy; 2026 Project Portfolio. 用数据驱动公益，用创意传递温暖。</footer>
 
 <script>
-  // Theme toggle
+  // Theme
   const toggle = document.getElementById('theme-toggle');
   const saved = localStorage.getItem('theme');
   if (saved) {
@@ -277,11 +398,32 @@
     toggle.textContent = next === 'light' ? '☀️' : '🌙';
   });
 
-  // Fade-up on scroll
-  const observer = new IntersectionObserver(entries => {
+  // Fade-up
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Counter animation
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.num[data-target]').forEach(el => {
+        const target = +el.dataset.target;
+        const duration = 1500;
+        const start = performance.now();
+        const tick = now => {
+          const progress = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(target * ease).toLocaleString();
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+      counterObs.unobserve(e.target);
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stats').forEach(el => counterObs.observe(el));
 </script>
 </body>
 </html>
