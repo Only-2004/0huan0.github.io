@@ -150,6 +150,22 @@
     .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
     .gallery-item img { width: 100%; height: auto; display: block; }
 
+    /* Rescue */
+    .rescue-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    .rescue-item {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); background: var(--card);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .rescue-item:hover { transform: translateY(-4px); box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+    .rescue-item img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .rescue-caption {
+      padding: 0.6rem 0.8rem; font-size: 0.82rem; font-weight: 600;
+      color: var(--text2); text-align: center;
+    }
+
     /* Survey — 图表区块 */
     .survey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
     .survey-card {
@@ -242,6 +258,7 @@
       .steps { grid-template-columns: repeat(2, 1fr); }
       .survey-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
+      .rescue-grid { grid-template-columns: repeat(2, 1fr); }
       .donut-area { flex-direction: column; }
       .nav-links a { display: none; }
     }
@@ -257,6 +274,7 @@
       <a href="#research">调研</a>
       <a href="#product">产品</a>
       <a href="#gallery">商品</a>
+      <a href="#rescue">救助</a>
       <a href="#data">数据</a>
       <a href="#result">成果</a>
     </div>
@@ -373,6 +391,37 @@
     <div class="gallery-item">
       <img src="product3.jpg" alt="邮票贴纸 / 水晶贴纸 / 透卡 / 明信片 / PP夹" loading="lazy">
     </div>
+  </div>
+</div>
+
+<!-- Rescue Records -->
+<div class="container sec fade-up" id="rescue">
+  <div class="sec-head">
+    <div class="sec-tag">Rescue</div>
+    <h2>救助记录</h2>
+    <p>每一次绝育与救助，都是对小生命的温柔守护。</p>
+  </div>
+  <div class="rescue-grid">
+    <div class="rescue-item">
+      <img src="rescue1.jpg" alt="术后恢复中的猫咪" loading="lazy">
+      <div class="rescue-caption">术后恢复中</div>
+    </div>
+    <div class="rescue-item">
+      <img src="rescue2.jpg" alt="佩戴伊丽莎白圈的猫咪" loading="lazy">
+      <div class="rescue-caption">绝育后观察</div>
+    </div>
+    <div class="rescue-item">
+      <img src="rescue3.jpg" alt="笼中等待康复的小猫" loading="lazy">
+      <div class="rescue-caption">住院康复</div>
+    </div>
+    <div class="rescue-item">
+      <img src="rescue4.jpg" alt="麻醉中的猫咪手术记录" loading="lazy">
+      <div class="rescue-caption">手术进行中</div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:1.5rem;">
+    <div class="co-title">数据</div>
+    <p>累计支持超过300只流浪动物完成绝育手术，每一笔善款都用在了实处。</p>
   </div>
 </div>
 
